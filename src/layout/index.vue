@@ -236,6 +236,7 @@
 			},
 			//路由监听高亮
 			showThis(){
+				console.log(this.$route.matched);
 				var home = this.$router.options.routes[0].children[0];
 				this.pmenu = this.$route.matched[1] || home;
 				this.nextMenu = this.filterUrl(this.pmenu.children);

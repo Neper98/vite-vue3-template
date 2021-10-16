@@ -12,7 +12,6 @@ const routes = [{
         {
             name: "page1-1",
             path: "/menu1/page1-1",
-
             component:`menu1/page1-1`,
             meta: {
                 title: "页面1-1",
@@ -22,11 +21,19 @@ const routes = [{
         {
             name: "page1-2",
             path: "/menu1/page1-2",
-
             component:`menu1/page1-2`,
             meta: {
                 title: "页面1-2",
                 icon: "el-icon-menu"
+            }
+        },
+        {
+            name: "baidu",
+            path: "https://router.vuejs.org/zh/",
+            meta: {
+                title: "vue-router官方文档",
+                icon: "el-icon-menu",
+                type: 'iframe'
             }
         }
     ]
@@ -57,6 +64,7 @@ const routes = [{
             meta: {
                 title: "页面2-1-1",
                 icon: "el-icon-menu",
+                active: "/menu2/page2-1",
                 hidden: true
             }
         }
@@ -108,7 +116,6 @@ const routes = [{
 
 // 按照角色生成路由表
 export function generateRoleRouter(role) {
-
     function getRouter(routes,role) {
         routes = routes.map(item => {
             // 有权限

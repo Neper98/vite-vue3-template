@@ -1,12 +1,12 @@
-const DEFAULT_CONFIG = {
+
+
+// 开发环境下配置
+const DEV_CONFIG = {
 	//标题
 	APP_NAME: "后台管理系统",
 
 	//版本号
-	APP_VER: "1.2.7",
-
-	//内核版本号
-	CORE_VER: "1.2.7",
+	APP_VER: "1.0.0",
 
 	//接口地址
 	API_URL: "/api",
@@ -41,10 +41,16 @@ const DEFAULT_CONFIG = {
 
 }
 
-// 如果生产模式，就合并动态的APP_CONFIG
-// public/config.js
+// 生产环境下额外的配置，覆盖开发环境的配置
+const PRO_CONFIG = {}
+
+let APP_CONFIG = DEV_CONFIG
 if(process.env.NODE_ENV === 'production'){
-	Object.assign(DEFAULT_CONFIG, APP_CONFIG)
+	APP_CONFIG = {
+		...APP_CONFIG,
+		...PRO_CONFIG
+	}
 }
 
-module.exports = DEFAULT_CONFIG
+
+module.exports = APP_CONFIG
