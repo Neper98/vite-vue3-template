@@ -28,7 +28,7 @@ const routes = [{
             }
         },
         {
-            name: "baidu",
+            name: "vue-router",
             path: "https://router.vuejs.org/zh/",
             meta: {
                 title: "vue-router官方文档",
@@ -103,11 +103,12 @@ const routes = [{
     children: [
         {
             name: "teahcer-index",
-            path: "/teacher/index",
-            component:`teacher/index`,
+            path: "http://www.baidu.com",
+            // component:`teacher/index`,
             meta: {
                 title: "老师主页",
-                icon: "el-icon-menu"
+                icon: "el-icon-menu",
+                type: 'link'
             }
         }
     ]

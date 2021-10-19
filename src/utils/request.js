@@ -31,8 +31,15 @@ axios.interceptors.request.use(
 // HTTP response 拦截器
 axios.interceptors.response.use(
 	(response) => {
-		return response;
-	},
+		if(response.code == 200) {
+			return response.data || {}
+		}
+		ElNotification.error({
+			title: '请求错误',
+			message: response.message || `未知错误！`
+		});
+		return Promise.reject(response.message);
+	}, 
 	(error) => {
 		if (error.response) {
 			if (error.response.status == 404) {
@@ -66,7 +73,6 @@ axios.interceptors.response.use(
 				message: "请求服务器无响应！"
 			});
 		}
-
 		return Promise.reject(error.response);
 	}
 );

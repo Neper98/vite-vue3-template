@@ -42,7 +42,9 @@ const DEV_CONFIG = {
 }
 
 // 生产环境下额外的配置，覆盖开发环境的配置
-const PRO_CONFIG = {}
+const PRO_CONFIG = {
+	API_URL: "https://www.fastmock.site/mock/18f94db5174920c0ad6a1e455bd1a1ca/scui-demo/api"
+}
 
 let APP_CONFIG = DEV_CONFIG
 if(process.env.NODE_ENV === 'production'){
