@@ -4,10 +4,10 @@
 
 import { createStore } from 'vuex';
 
-const files = require.context('./modules', false, /\.js$/);
+const files = import.meta.globEager('./modules/*.js')
 const modules = {}
-files.keys().forEach((key) => {
-	modules[key.replace(/(\.\/|\.js)/g, '')] = files(key).default
+Object.keys(files).forEach((key) => {
+	modules[key.replace(/(\.\/|\.js)/g, '').split('/')[1]] = files[key].default
 })
 
 export default createStore({

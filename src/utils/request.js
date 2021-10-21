@@ -31,14 +31,7 @@ axios.interceptors.request.use(
 // HTTP response 拦截器
 axios.interceptors.response.use(
 	(response) => {
-		if(response.code == 200) {
-			return response.data || {}
-		}
-		ElNotification.error({
-			title: '请求错误',
-			message: response.message || `未知错误！`
-		});
-		return Promise.reject(response.message);
+		return response
 	}, 
 	(error) => {
 		if (error.response) {

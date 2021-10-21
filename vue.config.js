@@ -26,7 +26,6 @@ module.exports = {
 		// 移除 prefetch 插件
 		config.plugins.delete('preload');
 		config.plugins.delete('prefetch');
-		config.resolve.alias.set('vue-i18n', 'vue-i18n/dist/vue-i18n.cjs.js');
 	},
 
 	configureWebpack: config => {

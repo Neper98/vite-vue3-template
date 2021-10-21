@@ -1,8 +1,12 @@
 //系统路由
+import Login from '@/views/userCenter/login.vue'
+import Dashboard from  '@/views/home/index.vue'
+import CMD from '@/views/other/cmd.vue'
+import Layout from '@/layout/index.vue'
 const routes = [{
 		name: "layout",
 		path: "/",
-		component: () => import(/* webpackChunkName: "layout" */ '@/layout'),
+		component: Layout,
 		redirect: '/dashboard',
 		children: [
 			{
@@ -13,13 +17,13 @@ const routes = [{
 					icon: "el-icon-menu",
 					affix: true
 				},
-				component: () => import(/* webpackChunkName: "home" */ '@/views/home'),
+				component: Dashboard,
 			}
 		]
 	},
 	{
 		path: "/cmd",
-		component: () => import(/* webpackChunkName: "cmd" */ '@/views/other/cmd'),
+		component: CMD,
 		meta: {
 			title: "CMD",
 			ishidden: true
@@ -27,7 +31,7 @@ const routes = [{
 	},
 	{
 		path: "/login",
-		component: () => import(/* webpackChunkName: "login" */ '@/views/userCenter/login'),
+		component: Login,
 		meta: {
 			title: "登录",
 			ishidden: true

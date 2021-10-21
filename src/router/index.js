@@ -6,6 +6,13 @@ import 'nprogress/nprogress.css'
 import tool from '@/utils/tool';
 import systemRouter from './systemRouter';
 import {beforeEach, afterEach} from './scrollBehavior';
+import {generateRoleRouter} from './asyncRouter'
+
+import Empty from '@/views/other/empty.vue'
+import Page404 from '@/views/other/404.vue'
+
+
+
 
 //系统路由
 const routes = systemRouter
@@ -14,9 +21,10 @@ const routes = systemRouter
 const routes_404 = {
 	path: "/:pathMatch(.*)*",
 	hidden: true,
-	component: () => import(/* webpackChunkName: "404" */ '@/views/other/404'),
+	component: Page404,
 }
 
+// 创建路由
 const router = createRouter({
 	history: createWebHashHistory(),
 	routes: routes
@@ -51,7 +59,8 @@ router.beforeEach(async (to, from, next) => {
 
 	//加载API路由
 	if(!isGetApiRouter){
-		let menu = tool.data.get("MENU");
+		const role = tool.data.get("USER_INFO").role;
+		let menu = generateRoleRouter(role);
 		var apiRouter = filterAsyncRouter(menu);
 		apiRouter.forEach(item => {
 			router.addRoute("layout", item)
@@ -90,6 +99,7 @@ function filterAsyncRouter(routerMap) {
 			item.meta.url = item.path;
 			item.path = `/i/${item.name}`;
 		}
+		console.log(item.component)
 		//MAP转路由对象
 		var route = {
 			path: item.path,
@@ -97,20 +107,13 @@ function filterAsyncRouter(routerMap) {
 			meta: item.meta,
 			redirect: item.redirect,
 			children: item.children ? filterAsyncRouter(item.children) : null,
-			component: loadComponent(item.component)
+			component: item.component?  item.component  : Empty
 		}
 		accessedRouters.push(route)
 	})
 	return accessedRouters
 }
-function loadComponent(component){
-	if(component){
-		return () => import(/* webpackChunkName: "[request]" */ `@/views/${component}`)
-	}else{
-		return () => import(`@/views/other/empty`)
-	}
 
-}
 
 
 export default router

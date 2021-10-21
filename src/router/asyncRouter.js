@@ -1,4 +1,12 @@
 //异步路由需要权限验证
+import Menu1_Page1_1 from '@/views/menu1/page1-1.vue'
+import Menu1_Page1_2 from '@/views/menu1/page1-2.vue'
+import Menu2_Page2_1 from '@/views/menu2/page2-1.vue'
+import Menu2_Page2_1_1 from '@/views/menu2/page2-1-1.vue'
+import Student_index from '@/views/student/index.vue'
+
+
+
 const routes = [{
     name: "menu1",
     path: "/menu1",
@@ -12,7 +20,7 @@ const routes = [{
         {
             name: "page1-1",
             path: "/menu1/page1-1",
-            component:`menu1/page1-1`,
+            component: Menu1_Page1_1,
             meta: {
                 title: "页面1-1",
                 icon: "el-icon-menu"
@@ -21,7 +29,7 @@ const routes = [{
         {
             name: "page1-2",
             path: "/menu1/page1-2",
-            component:`menu1/page1-2`,
+            component: Menu1_Page1_2,
             meta: {
                 title: "页面1-2",
                 icon: "el-icon-menu"
@@ -50,8 +58,7 @@ const routes = [{
         {
             name: "page2-1",
             path: "/menu2/page2-1",
-
-            component:`menu2/page2-1`,
+            component: Menu2_Page2_1,
             meta: {
                 title: "页面2-1",
                 icon: "el-icon-menu"
@@ -60,7 +67,7 @@ const routes = [{
         {
             name: "page2-1-1",
             path: "/menu2/page2-1-1",
-            component:`menu2/page2-1-1`,
+            component: Menu2_Page2_1_1,
             meta: {
                 title: "页面2-1-1",
                 icon: "el-icon-menu",
@@ -83,7 +90,7 @@ const routes = [{
         {
             name: "student-index",
             path: "/studnet/index",
-            component:`student/index`,
+            component: Student_index,
             meta: {
                 title: "学生主页",
                 icon: "el-icon-menu"

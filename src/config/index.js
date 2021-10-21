@@ -54,5 +54,4 @@ if(process.env.NODE_ENV === 'production'){
 	}
 }
 
-
-module.exports = APP_CONFIG
+export default APP_CONFIG
