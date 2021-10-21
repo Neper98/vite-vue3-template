@@ -257,10 +257,6 @@
 					if(item.meta.hidden){
 						return false
 					}
-					//处理http
-					if(item.meta.type=='iframe'){
-						item.path = `/i/${item.name}`;
-					}
 					//递归循环
 					if(item.children&&item.children.length > 0){
 						item.children = this.filterUrl(item.children)

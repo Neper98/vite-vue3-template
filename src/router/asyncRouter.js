@@ -37,11 +37,12 @@ const routes = [{
         },
         {
             name: "vue-router",
-            path: "https://router.vuejs.org/zh/",
+            path: "/menu1/vue-router",
             meta: {
                 title: "vue-router官方文档",
                 icon: "el-icon-menu",
-                type: 'iframe'
+                type: 'iframe',
+                url: 'https://router.vuejs.org/zh/'
             }
         }
     ]
