@@ -4,7 +4,7 @@
 	<el-drawer ref="mobileNavBox" title="移动端菜单" :size="240" v-model="nav" direction="ltr" :with-header="false" destroy-on-close>
 		<el-container class="mobile-nav">
 			<el-header>
-				<div class="logo-bar"><img class="logo" src="img/logo.png"><span>{{ $CONFIG.APP_NAME }}</span></div>
+				<div class="logo-bar"><img class="logo" :src="logo"><span>{{ $CONFIG.APP_NAME }}</span></div>
 			</el-header>
 			<el-main>
 				<el-scrollbar>
@@ -20,6 +20,7 @@
 
 <script>
 	import NavMenu from './NavMenu.vue';
+	import logo from '@/assets/logo.png'
 
 	export default {
 		components: {
@@ -28,7 +29,8 @@
 		data() {
 			return {
 				nav: false,
-				menu: []
+				menu: [],
+				logo
 			}
 		},
 		computed:{

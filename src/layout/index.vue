@@ -4,7 +4,7 @@
 		<header class="adminui-header">
 			<div class="adminui-header-left">
 				<div class="logo-bar">
-					<img class="logo" src="img/logo.png">
+					<img class="logo" :src="logo">
 					<span>{{ $CONFIG.APP_NAME }}</span>
 				</div>
 				<ul v-if="!ismobile" class="nav">
@@ -48,7 +48,7 @@
 		<header class="adminui-header">
 			<div class="adminui-header-left">
 				<div class="logo-bar">
-					<img class="logo" src="img/logo.png">
+					<img class="logo" :src="logo">
 					<span>{{ $CONFIG.APP_NAME }}</span>
 				</div>
 			</div>
@@ -83,7 +83,7 @@
 		<header class="adminui-header">
 			<div class="adminui-header-left">
 				<div class="logo-bar">
-					<img class="logo" src="img/logo.png">
+					<img class="logo" :src="logo">
 					<span>{{ $CONFIG.APP_NAME }}</span>
 				</div>
 			</div>
@@ -165,6 +165,8 @@
 	import userbar from './components/userbar.vue';
 	import setting from './components/setting.vue';
 	import iframeView from './components/iframeView.vue';
+	import logo from '@/assets/logo.png'
+	
 
 	export default {
 		name: 'index',
@@ -182,7 +184,8 @@
 				settingDialog: false,
 				menu: [],
 				nextMenu: [],
-				pmenu: {}
+				pmenu: {},
+				logo
 			}
 		},
 		computed:{

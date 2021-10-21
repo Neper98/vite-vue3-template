@@ -5,7 +5,7 @@
 
 				<div class="login-form">
 					<div class="login-logo">
-						<img class="logo" :alt="$CONFIG.APP_NAME" src="img/logo.png">
+						<img class="logo" :alt="$CONFIG.APP_NAME" :src="logo">
 						<h2>用户登录</h2>
 					</div>
 					<el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="0" size="large">
@@ -53,7 +53,7 @@
 						<h4>高性能 / 精致 / 优雅</h4>
 						<p>基于Vue3 + Element-Plus 的中后台前端解决方案。</p>
 					</div>
-					<img src="img/loginbg.svg"/>
+					<img :src="loginbg"/>
 				</div>
 			</div>
 			<div class="login-footer">© {{$CONFIG.APP_NAME}} {{$CONFIG.APP_VER}}</div>
@@ -63,6 +63,9 @@
 
 <script>
 	import { generateRoleRouter } from '@/router/asyncRouter'
+	import logo from '@/assets/logo.png'
+	import loginbg from '@/assets/loginbg.svg'
+
 
 	export default {
 		data() {
@@ -82,7 +85,9 @@
 					]
 				},
 				rolelist: [],
-				islogin: false
+				islogin: false,
+				logo,
+				loginbg
 			}
 		},
 		watch:{
