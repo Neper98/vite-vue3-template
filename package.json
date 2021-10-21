@@ -3,8 +3,8 @@
 	"version": "1.2.7",
 	"private": true,
 	"scripts": {
-		"build:vite": "vite build",
-		"dev:vite": "vite",
+		"build": "vite build",
+		"dev": "vite",
 		"lint": "vue-cli-service lint"
 	},
 	"dependencies": {
