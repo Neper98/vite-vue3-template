@@ -97,10 +97,10 @@
 			}
 		},
 		mounted(){
-			this.$API.auth.rolelist.get().then(res => {
-				this.rolelist = res.data
-			});
-			
+			// this.$API.auth.rolelist.get().then(res => {
+			// 	this.rolelist = res.data
+			// });
+			this.rolelist = this.$CONFIG.ROLE_LIST
 		},
 		created: function() {
 			this.$TOOL.data.remove("TOKEN")
