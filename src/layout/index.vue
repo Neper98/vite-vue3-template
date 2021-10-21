@@ -202,7 +202,7 @@
 				return this.$store.state.global.menuIsCollapse
 			},
 			isDev(){
-				return process.env.NODE_ENV === 'development';
+				return import.meta.env.DEV;
 			}
 		},
 		created() {

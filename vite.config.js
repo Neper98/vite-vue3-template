@@ -7,6 +7,7 @@ import path from "path";
 export default defineConfig({
   base: './',
   resolve: {
+    extensions: ['.vue', '.js'],
     alias:{
       "@": path.resolve(__dirname, "src")
     }

@@ -47,7 +47,7 @@ const PRO_CONFIG = {
 }
 
 let APP_CONFIG = DEV_CONFIG
-if(process.env.NODE_ENV === 'production'){
+if(import.meta.env.PROD){
 	APP_CONFIG = {
 		...APP_CONFIG,
 		...PRO_CONFIG

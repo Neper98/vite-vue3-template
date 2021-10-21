@@ -1,9 +1,9 @@
 //异步路由需要权限验证
-import Menu1_Page1_1 from '@/views/menu1/page1-1.vue'
-import Menu1_Page1_2 from '@/views/menu1/page1-2.vue'
-import Menu2_Page2_1 from '@/views/menu2/page2-1.vue'
-import Menu2_Page2_1_1 from '@/views/menu2/page2-1-1.vue'
-import Student_index from '@/views/student/index.vue'
+import Menu1_Page1_1 from '@/views/menu1/page1-1'
+import Menu1_Page1_2 from '@/views/menu1/page1-2'
+import Menu2_Page2_1 from '@/views/menu2/page2-1'
+import Menu2_Page2_1_1 from '@/views/menu2/page2-1-1'
+import Student_index from '@/views/student/index'
 
 
 
