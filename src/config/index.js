@@ -1,5 +1,3 @@
-
-
 // 开发环境下配置
 const DEV_CONFIG = {
     // 标题
@@ -38,6 +36,22 @@ const DEV_CONFIG = {
 
     // 主题颜色
     COLOR: ''
+
+	// 角色定义
+	ROLE_LIST:[
+        {
+            "role":"student",
+            "roleName":"学生"
+        },
+        {
+            "role":"teacher",
+            "roleName":"老师"
+        },
+        {
+            "role":"admin",
+            "roleName":"管理员"
+        }
+    ]
 
 }
 
