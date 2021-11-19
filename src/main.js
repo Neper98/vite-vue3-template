@@ -7,12 +7,12 @@ import store from './store'
 import { createApp } from 'vue'
 import App from './App.vue'
 
-const app = createApp(App);
+const app = createApp(App)
 
-app.use(store);
-app.use(router);
-app.use(ElementPlus, {size: 'small'});
-app.use(scui);
+app.use(store)
+app.use(router)
+app.use(ElementPlus, { size: 'small' })
+app.use(scui)
 
-//挂载app
-app.mount('#app');
+// 挂载app
+app.mount('#app')

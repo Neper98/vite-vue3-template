@@ -1,4 +1,4 @@
-//异步路由需要权限验证
+// 异步路由需要权限验证
 import Menu1_Page1_1 from '@/views/menu1/page1-1'
 import Menu1_Page1_2 from '@/views/menu1/page1-2'
 import Menu2_Page2_1 from '@/views/menu2/page2-1'
@@ -46,7 +46,7 @@ const routes = [{
             }
         }
     ]
-},{
+}, {
     name: "menu2",
     path: "/menu2",
     redirect: '/menu2/page2-1',
@@ -77,7 +77,7 @@ const routes = [{
             }
         }
     ]
-},{
+}, {
     name: "studnet",
     path: "/studnet",
     redirect: '/student/index',
@@ -98,7 +98,7 @@ const routes = [{
             }
         }
     ]
-},{
+}, {
     name: "teacher",
     path: "/teacher",
     redirect: '/teacher/index',
@@ -125,7 +125,7 @@ const routes = [{
 
 // 按照角色生成路由表
 export function generateRoleRouter(role) {
-    function getRouter(routes,role) {
+    function getRouter(routes, role) {
         routes = routes.map(item => {
             // 有权限
             if((item.meta.role && item.meta.role.includes(role)) || !item.meta.role) {
@@ -139,7 +139,7 @@ export function generateRoleRouter(role) {
         })
         return routes.filter(item => item !== null)
     }
-    return getRouter(routes,role);
+    return getRouter(routes, role)
 }
 
-export default routes;
+export default routes

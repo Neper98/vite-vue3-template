@@ -62,86 +62,84 @@
 </template>
 
 <script>
-	import { generateRoleRouter } from '@/router/asyncRouter'
-	import logo from '@/assets/logo.png'
-	import loginbg from '@/assets/loginbg.svg'
+import { generateRoleRouter } from '@/router/asyncRouter'
+import logo from '@/assets/logo.png'
+import loginbg from '@/assets/loginbg.svg'
 
 
-	export default {
-		data() {
-			return {
-				userType: 'admin',
-				ruleForm: {
-					user: "admin",
-					password: "admin",
-					autologin: false
-				},
-				rules: {
-					user: [
-						{required: true, message: '请输入用户名', trigger: 'blur'}
-					],
-					password: [
-						{required: true, message: '请输入密码', trigger: 'blur'}
-					]
-				},
-				rolelist: [],
-				islogin: false,
-				logo,
-				loginbg
-			}
-		},
-		watch:{
-			userType(val){
-				this.ruleForm.user = val
-				this.ruleForm.password = val
-			}
-		},
-		mounted(){
-			this.$API.auth.rolelist.get().then(res => {
-				this.rolelist = res.data
-			});
-			
-		},
-		created: function() {
-			this.$TOOL.data.remove("TOKEN")
-			this.$TOOL.data.remove("USER_INFO")
-			this.$TOOL.data.remove("MENU")
-			this.$TOOL.data.remove("PERMISSIONS")
-			this.$store.commit("clearViewTags")
-			this.$store.commit("clearKeepLive")
-			this.$store.commit("clearIframeList")
-			console.log('%c SCUI %c Gitee: https://gitee.com/lolicode/scui', 'background:#666;color:#fff;border-radius:3px;', '')
-		},
-		methods: {
-			async login(){
-				this.islogin = true
-				var data = {
-					username: this.ruleForm.user,
-					password: this.$TOOL.crypto.MD5(this.ruleForm.password),
-					userType: this.userType
-				}
-				//获取token
-				var user = await this.$API.auth.token.post(data)
-				if(user.code == 200){
-					this.$TOOL.data.set("TOKEN", user.data.token)
-					this.$TOOL.data.set("USER_INFO", user.data.userInfo)
-				}else{
-					this.islogin = false
-					this.$message.warning(user.message)
-					return false
-				}
-				// 获取菜单
-				var menu = generateRoleRouter(this.userType)
-				this.$TOOL.data.set("MENU", menu);
+export default {
+    data() {
+        return {
+            userType: 'admin',
+            ruleForm: {
+                user: "admin",
+                password: "admin",
+                autologin: false
+            },
+            rules: {
+                user: [
+                    { required: true, message: '请输入用户名', trigger: 'blur' }
+                ],
+                password: [
+                    { required: true, message: '请输入密码', trigger: 'blur' }
+                ]
+            },
+            rolelist: [],
+            islogin: false,
+            logo,
+            loginbg
+        }
+    },
+    watch: {
+        userType(val) {
+            this.ruleForm.user = val
+            this.ruleForm.password = val
+        }
+    },
+    mounted() {
+        this.$API.auth.rolelist().then(res => {
+            this.rolelist = res
+        })
 
-				this.$router.replace({
-					path: '/'
-				})
-				this.$message.success("Login Success 登录成功")
-				this.islogin = false
-			}
-		}
-	}
+    },
+    created: function() {
+        this.$TOOL.data.remove("TOKEN")
+        this.$TOOL.data.remove("USER_INFO")
+        this.$TOOL.data.remove("MENU")
+        this.$TOOL.data.remove("PERMISSIONS")
+        this.$store.commit("clearViewTags")
+        this.$store.commit("clearKeepLive")
+        this.$store.commit("clearIframeList")
+        console.log('%c SCUI %c Gitee: https://gitee.com/lolicode/scui', 'background:#666;color:#fff;border-radius:3px;', '')
+    },
+    methods: {
+        async login() {
+            this.islogin = true
+            var data = {
+                username: this.ruleForm.user,
+                password: this.$TOOL.crypto.MD5(this.ruleForm.password),
+                userType: this.userType
+            }
+            // 获取token
+            this.$API.auth.token(data).then((res) => {
+                this.$TOOL.data.set("TOKEN", res.token)
+                this.$TOOL.data.set("USER_INFO", res.userInfo)
+                // 获取菜单
+                var menu = generateRoleRouter(this.userType)
+                this.$TOOL.data.set("MENU", menu)
+
+                this.$router.replace({
+                    path: '/'
+                })
+                this.$message.success("Login Success 登录成功")
+            }).finally(() => {
+                this.islogin = false
+            })
+
+
+        }
+    }
+}
 </script>
 
 <style scoped>

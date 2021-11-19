@@ -19,111 +19,111 @@
 </template>
 
 <script>
-	import NavMenu from './NavMenu.vue';
-	import logo from '@/assets/logo.png'
+import NavMenu from './NavMenu.vue'
+import logo from '@/assets/logo.png'
 
-	export default {
-		components: {
-			NavMenu
-		},
-		data() {
-			return {
-				nav: false,
-				menu: [],
-				logo
-			}
-		},
-		computed:{
+export default {
+    components: {
+        NavMenu
+    },
+    data() {
+        return {
+            nav: false,
+            menu: [],
+            logo
+        }
+    },
+    computed: {
 
-		},
-		created() {
-			var menu = this.$TOOL.data.get("MENU");
-			var home = this.$router.options.routes[0].children[0];
-			menu.unshift(home);
-			this.menu = this.filterUrl(menu)
-		},
+    },
+    created() {
+        var menu = this.$TOOL.data.get("MENU")
+        var home = this.$router.options.routes[0].children[0]
+        menu.unshift(home)
+        this.menu = this.filterUrl(menu)
+    },
 
-		watch: {
+    watch: {
 
-		},
-		methods: {
-			showMobileNav(e){
-				var isdrag = e.currentTarget.getAttribute('drag-flag')
-				if (isdrag == 'true') {
-					return false;
-				}else{
-					this.nav = true;
-				}
+    },
+    methods: {
+        showMobileNav(e) {
+            var isdrag = e.currentTarget.getAttribute('drag-flag')
+            if (isdrag === 'true') {
+                return false
+            }else{
+                this.nav = true
+            }
 
-			},
-			select(){
-				this.$refs.mobileNavBox.handleClose()
-			},
-			//转换外部链接的路由
-			filterUrl(map){
-				map.forEach((item,index) => {
-					item.meta = item.meta?item.meta:{};
-					//处理隐藏
-					if(item.meta.hidden){
-						map.splice(index, 1);
-					}
-					//处理http
-					if(item.meta.type=='iframe'){
-						item.path = `/i/${item.name}`;
-					}
-					//递归循环
-					if(item.children&&item.children.length > 0){
-						item.children = this.filterUrl(item.children);
-					}
+        },
+        select() {
+            this.$refs.mobileNavBox.handleClose()
+        },
+        // 转换外部链接的路由
+        filterUrl(map) {
+            map.forEach((item, index) => {
+                item.meta = item.meta ? item.meta : {}
+                // 处理隐藏
+                if(item.meta.hidden) {
+                    map.splice(index, 1)
+                }
+                // 处理http
+                if(item.meta.type === 'iframe') {
+                    item.path = `/i/${item.name}`
+                }
+                // 递归循环
+                if(item.children && item.children.length > 0) {
+                    item.children = this.filterUrl(item.children)
+                }
 
-				})
-				return map;
-			}
-		},
-		directives: {
-			drag(el){
-				let oDiv = el; //当前元素
-				let firstTime='',lastTime='';
-				//禁止选择网页上的文字
-				// document.onselectstart = function() {
-				// 	return false;
-				// };
-				oDiv.onmousedown = function(e){
-					//鼠标按下，计算当前元素距离可视区的距离
-					let disX = e.clientX - oDiv.offsetLeft;
-					let disY = e.clientY - oDiv.offsetTop;
-					document.onmousemove = function(e){
-						oDiv.setAttribute('drag-flag', true);
-						firstTime = new Date().getTime();
-						//通过事件委托，计算移动的距离
-						let l = e.clientX - disX;
-						let t = e.clientY - disY;
+            })
+            return map
+        }
+    },
+    directives: {
+        drag(el) {
+            let oDiv = el // 当前元素
+            let firstTime = '', lastTime = ''
+            // 禁止选择网页上的文字
+            // document.onselectstart = function() {
+            // 	return false;
+            // };
+            oDiv.onmousedown = function(e) {
+                // 鼠标按下，计算当前元素距离可视区的距离
+                let disX = e.clientX - oDiv.offsetLeft
+                let disY = e.clientY - oDiv.offsetTop
+                document.onmousemove = function(e) {
+                    oDiv.setAttribute('drag-flag', true)
+                    firstTime = new Date().getTime()
+                    // 通过事件委托，计算移动的距离
+                    let l = e.clientX - disX
+                    let t = e.clientY - disY
 
-						//移动当前元素
+                    // 移动当前元素
 
-						if(t > 0 && t < document.body.clientHeight - 50){
-							oDiv.style.top = t + "px";
-						}
-						if(l > 0 && l < document.body.clientWidth - 50){
-							oDiv.style.left = l + "px";
-						}
+                    if(t > 0 && t < document.body.clientHeight - 50) {
+                        oDiv.style.top = t + "px"
+                    }
+                    if(l > 0 && l < document.body.clientWidth - 50) {
+                        oDiv.style.left = l + "px"
+                    }
 
 
-					}
-					document.onmouseup = function(){
-						lastTime = new Date().getTime();
-						if( (lastTime - firstTime)>200 ){
-							oDiv.setAttribute('drag-flag', false);
-						}
-						document.onmousemove = null;
-						document.onmouseup = null;
-					};
-					//return false不加的话可能导致黏连，就是拖到一个地方时div粘在鼠标上不下来，相当于onmouseup失效
-					return false;
-				};
-			}
-		}
-	}
+                }
+                document.onmouseup = function() {
+                    lastTime = new Date().getTime()
+                    if((lastTime - firstTime) > 200) {
+                        oDiv.setAttribute('drag-flag', false)
+                    }
+                    document.onmousemove = null
+                    document.onmouseup = null
+                }
+                // return false不加的话可能导致黏连，就是拖到一个地方时div粘在鼠标上不下来，相当于onmouseup失效
+                return false
+            }
+        }
+    }
+}
 </script>
 
 <style scoped>

@@ -4,10 +4,10 @@
 
 <script>
 export default {
-  name: 'page1-1',
-  data() {
-    return {}
-  }
+    name: 'Page11',
+    data() {
+        return {}
+    }
 }
 </script>
 

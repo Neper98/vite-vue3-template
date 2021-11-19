@@ -22,15 +22,15 @@
 </template>
 
 <script>
-	export default {
-		name: 'NavMenu',
-		props: ['navMenus'],
-		data() {
-			return {}
-		},
-		methods: {
-			a(){},
-			hasChildren:(item) => item.children && item.children.every(item => !item.meta.hidden)
-		}
-	}
+export default {
+    name: 'NavMenu',
+    props: ['navMenus'],
+    data() {
+        return {}
+    },
+    methods: {
+        a() {},
+        hasChildren: (item) => item.children && item.children.every(item => !item.meta.hidden)
+    }
+}
 </script>

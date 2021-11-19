@@ -19,43 +19,43 @@
 </template>
 
 <script>
-	export default {
-		data(){
-			return {
-				userName: "",
-				userNameF: "",
-			}
-		},
-		created() {
-			var userInfo = this.$TOOL.data.get("USER_INFO");
-			this.userName = userInfo.userName;
-			this.userNameF = this.userName.substring(0,1);
-		},
-		methods: {
-			//个人信息
-			handleUser(command) {
-				if(command == "cmd"){
-					this.$router.push({path: '/cmd'});
-				}
-				if(command == "outLogin"){
-					this.$confirm('确认是否退出当前用户？','提示', {
-						type: 'warning',
-						confirmButtonText: '退出',
-						confirmButtonClass: 'el-button--danger'
-					}).then(() => {
-						this.$router.replace({path: '/login'});
-					}).catch(() => {
-						//取消退出
-					})
-				}
-			},
-			//全屏
-			screen(){
-				var element = document.documentElement;
-				this.$TOOL.screen(element)
-			},
-		}
-	}
+export default {
+    data() {
+        return {
+            userName: "",
+            userNameF: ""
+        }
+    },
+    created() {
+        var userInfo = this.$TOOL.data.get("USER_INFO")
+        this.userName = userInfo.userName
+        this.userNameF = this.userName.substring(0, 1)
+    },
+    methods: {
+        // 个人信息
+        handleUser(command) {
+            if(command === "cmd") {
+                this.$router.push({ path: '/cmd' })
+            }
+            if(command === "outLogin") {
+                this.$confirm('确认是否退出当前用户？', '提示', {
+                    type: 'warning',
+                    confirmButtonText: '退出',
+                    confirmButtonClass: 'el-button--danger'
+                }).then(() => {
+                    this.$router.replace({ path: '/login' })
+                }).catch(() => {
+                    // 取消退出
+                })
+            }
+        },
+        // 全屏
+        screen() {
+            var element = document.documentElement
+            this.$TOOL.screen(element)
+        }
+    }
+}
 </script>
 
 <style scoped>
@@ -74,7 +74,7 @@
 	.msg-list__main h2 {font-size: 15px;font-weight: normal;color: #333;}
 	.msg-list__main p {font-size: 12px;color: #999;line-height: 1.8;margin-top: 5px;}
 	.msg-list__time {width: 100px;text-align: right;color: #999;}
-	
+
 	[data-theme='dark'] .msg-list__main h2 {color: #d0d0d0;}
 	[data-theme='dark'] .msg-list li {border-top:1px solid #363636;}
 	[data-theme='dark'] .msg-list li a:hover {background: #383838;}

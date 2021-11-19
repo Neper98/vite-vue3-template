@@ -14,50 +14,50 @@
 </template>
 
 <script>
-	export default {
-		data() {
-			return {
+export default {
+    data() {
+        return {
 
-			}
-		},
-		watch: {
-			$route(e) {
-				this.push(e)
-			},
-		},
-		created() {
-			this.push(this.$route);
-		},
-		computed:{
-			iframeList(){
-				return this.$store.state.iframe.iframeList
-			},
-			ismobile(){
-				return this.$store.state.global.ismobile
-			},
-			layoutTags(){
-				return this.$store.state.global.layoutTags
-			}
-		},
-		mounted() {
+        }
+    },
+    watch: {
+        $route(e) {
+            this.push(e)
+        }
+    },
+    created() {
+        this.push(this.$route)
+    },
+    computed: {
+        iframeList() {
+            return this.$store.state.iframe.iframeList
+        },
+        ismobile() {
+            return this.$store.state.global.ismobile
+        },
+        layoutTags() {
+            return this.$store.state.global.layoutTags
+        }
+    },
+    mounted() {
 
-		},
-		methods: {
-			push(route){
-				if(route.meta.type == 'iframe'){
-					if(this.ismobile || !this.layoutTags){
-						this.$store.commit("setIframeList", route)
-					}else{
-						this.$store.commit("pushIframeList", route)
-					}
-				}else{
-					if(this.ismobile || !this.layoutTags){
-						this.$store.commit("clearIframeList")
-					}
-				}
-			}
-		}
-	}
+    },
+    methods: {
+        push(route) {
+            if(route.meta.type === 'iframe') {
+                if(this.ismobile || !this.layoutTags) {
+                    this.$store.commit("setIframeList", route)
+                }else{
+                    this.$store.commit("pushIframeList", route)
+                }
+            }else{
+                if(this.ismobile || !this.layoutTags) {
+                    this.$store.commit("clearIframeList")
+                }
+            }
+        }
+    }
+}
 </script>
 
 <style scoped>

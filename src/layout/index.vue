@@ -115,7 +115,10 @@
 				<div class="adminui-side-split-scroll">
 					<el-scrollbar>
 						<ul>
-							<li v-for="item in menu" :key="item" :class="pmenu.path==item.path?'active':''"
+							<li
+v-for="item in menu"
+:key="item"
+:class="pmenu.path==item.path?'active':''"
 								@click="showMenu(item)">
 								<i :class="item.meta.icon || 'el-icon-menu'"></i>
 								<p>{{ item.meta.title }}</p>
@@ -158,113 +161,113 @@
 </template>
 
 <script>
-	import SideM from './components/sideM.vue';
-	import Topbar from './components/topbar.vue';
-	import Tags from './components/tags.vue';
-	import NavMenu from './components/NavMenu.vue';
-	import userbar from './components/userbar.vue';
-	import setting from './components/setting.vue';
-	import iframeView from './components/iframeView.vue';
-	import logo from '@/assets/logo.png'
-	
+import SideM from './components/sideM.vue'
+import Topbar from './components/topbar.vue'
+import Tags from './components/tags.vue'
+import NavMenu from './components/NavMenu.vue'
+import userbar from './components/userbar.vue'
+import setting from './components/setting.vue'
+import iframeView from './components/iframeView.vue'
+import logo from '@/assets/logo.png'
 
-	export default {
-		name: 'index',
-		components: {
-			SideM,
-			Topbar,
-			Tags,
-			NavMenu,
-			userbar,
-			setting,
-			iframeView
-		},
-		data() {
-			return {
-				settingDialog: false,
-				menu: [],
-				nextMenu: [],
-				pmenu: {},
-				logo
-			}
-		},
-		computed:{
-			ismobile(){
-				return this.$store.state.global.ismobile
-			},
-			layout(){
-				return this.$store.state.global.layout
-			},
-			layoutTags(){
-				return this.$store.state.global.layoutTags
-			},
-			menuIsCollapse(){
-				return this.$store.state.global.menuIsCollapse
-			},
-			isDev(){
-				return import.meta.env.DEV;
-			}
-		},
-		created() {
-			this.onLayoutResize();
-			window.addEventListener('resize', this.onLayoutResize);
-			var menu = this.$TOOL.data.get("MENU") || [];
-			var home = this.$router.options.routes[0].children[0];
-			menu.unshift(home);
-			this.menu = this.filterUrl(menu);
-			this.showThis()
-		},
-		watch: {
-			$route() {
-				this.showThis()
-			},
-			layout: {
-				handler(val){
-					document.body.setAttribute('data-layout', val)
-				},
-				immediate: true,
-			}
-		},
-		methods: {
-			openSetting(){
-				this.settingDialog = true;
-			},
-			onLayoutResize(){
-				const clientWidth = document.body.clientWidth;
-				if(clientWidth < 992){
-					this.$store.commit("SET_ismobile", true)
-				}else{
-					this.$store.commit("SET_ismobile", false)
-				}
-			},
-			//路由监听高亮
-			showThis(){
-				var home = this.$router.options.routes[0].children[0];
-				this.pmenu = this.$route.matched[1] || home;
-				this.nextMenu = this.filterUrl(this.pmenu.children);
-			},
-			//点击显示
-			showMenu(route) {
-				this.pmenu = route;
-				this.nextMenu = this.filterUrl(route.children);
-			},
-			//转换外部链接的路由
-			filterUrl(map){
-				var newMap = []
-				map && map.forEach(item => {
-					item.meta = item.meta?item.meta:{};
-					//处理隐藏
-					if(item.meta.hidden){
-						return false
-					}
-					//递归循环
-					if(item.children&&item.children.length > 0){
-						item.children = this.filterUrl(item.children)
-					}
-					newMap.push(item)
-				})
-				return newMap;
-			}
-		}
-	}
+
+export default {
+    name: 'Index',
+    components: {
+        SideM,
+        Topbar,
+        Tags,
+        NavMenu,
+        userbar,
+        setting,
+        iframeView
+    },
+    data() {
+        return {
+            settingDialog: false,
+            menu: [],
+            nextMenu: [],
+            pmenu: {},
+            logo
+        }
+    },
+    computed: {
+        ismobile() {
+            return this.$store.state.global.ismobile
+        },
+        layout() {
+            return this.$store.state.global.layout
+        },
+        layoutTags() {
+            return this.$store.state.global.layoutTags
+        },
+        menuIsCollapse() {
+            return this.$store.state.global.menuIsCollapse
+        },
+        isDev() {
+            return import.meta.env.DEV
+        }
+    },
+    created() {
+        this.onLayoutResize()
+        window.addEventListener('resize', this.onLayoutResize)
+        var menu = this.$TOOL.data.get("MENU") || []
+        var home = this.$router.options.routes[0].children[0]
+        menu.unshift(home)
+        this.menu = this.filterUrl(menu)
+        this.showThis()
+    },
+    watch: {
+        $route() {
+            this.showThis()
+        },
+        layout: {
+            handler(val) {
+                document.body.setAttribute('data-layout', val)
+            },
+            immediate: true
+        }
+    },
+    methods: {
+        openSetting() {
+            this.settingDialog = true
+        },
+        onLayoutResize() {
+            const clientWidth = document.body.clientWidth
+            if(clientWidth < 992) {
+                this.$store.commit("SET_ismobile", true)
+            }else{
+                this.$store.commit("SET_ismobile", false)
+            }
+        },
+        // 路由监听高亮
+        showThis() {
+            var home = this.$router.options.routes[0].children[0]
+            this.pmenu = this.$route.matched[1] || home
+            this.nextMenu = this.filterUrl(this.pmenu.children)
+        },
+        // 点击显示
+        showMenu(route) {
+            this.pmenu = route
+            this.nextMenu = this.filterUrl(route.children)
+        },
+        // 转换外部链接的路由
+        filterUrl(map) {
+            var newMap = []
+            map && map.forEach(item => {
+                item.meta = item.meta ? item.meta : {}
+                // 处理隐藏
+                if(item.meta.hidden) {
+                    return false
+                }
+                // 递归循环
+                if(item.children && item.children.length > 0) {
+                    item.children = this.filterUrl(item.children)
+                }
+                newMap.push(item)
+            })
+            return newMap
+        }
+    }
+}
 </script>

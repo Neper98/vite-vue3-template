@@ -29,43 +29,43 @@
 </template>
 
 <script>
-	import colorTool from '@/utils/color'
+import colorTool from '@/utils/color'
 
-	export default {
-		data(){
-			return {
-				layout: this.$store.state.global.layout,
-				menuIsCollapse: this.$store.state.global.menuIsCollapse,
-				layoutTags: this.$store.state.global.layoutTags,
-				theme: this.$TOOL.data.get('APP_THEME') || 'default',
-				colorList: ['#409EFF', '#009688', '#536dfe', '#ff5c93', '#c62f2f', '#fd726d'],
-				colorPrimary: this.$TOOL.data.get('APP_COLOR') || this.$CONFIG.COLOR || '#409EFF'
-			}
-		},
-		watch: {
-			layout(val) {
-				this.$store.commit("SET_layout", val)
-			},
-			menuIsCollapse(){
-				this.$store.commit("TOGGLE_menuIsCollapse")
-			},
-			layoutTags(){
-				this.$store.commit("TOGGLE_layoutTags")
-			},
-			theme(val){
-				document.body.setAttribute('data-theme', val)
-				this.$TOOL.data.set("APP_THEME", val);
-			},
-			colorPrimary(val){
-				document.documentElement.style.setProperty('--el-color-primary', val);
-				for (let i = 1; i <= 9; i++) {
-					document.documentElement.style.setProperty(`--el-color-primary-light-${i}`, colorTool.lighten(val,i/10));
-				}
-				document.documentElement.style.setProperty(`--el-color-primary-darken-1`, colorTool.darken(val,0.1));
-				this.$TOOL.data.set("APP_COLOR", val);
-			}
-		}
-	}
+export default {
+    data() {
+        return {
+            layout: this.$store.state.global.layout,
+            menuIsCollapse: this.$store.state.global.menuIsCollapse,
+            layoutTags: this.$store.state.global.layoutTags,
+            theme: this.$TOOL.data.get('APP_THEME') || 'default',
+            colorList: ['#409EFF', '#009688', '#536dfe', '#ff5c93', '#c62f2f', '#fd726d'],
+            colorPrimary: this.$TOOL.data.get('APP_COLOR') || this.$CONFIG.COLOR || '#409EFF'
+        }
+    },
+    watch: {
+        layout(val) {
+            this.$store.commit("SET_layout", val)
+        },
+        menuIsCollapse() {
+            this.$store.commit("TOGGLE_menuIsCollapse")
+        },
+        layoutTags() {
+            this.$store.commit("TOGGLE_layoutTags")
+        },
+        theme(val) {
+            document.body.setAttribute('data-theme', val)
+            this.$TOOL.data.set("APP_THEME", val)
+        },
+        colorPrimary(val) {
+            document.documentElement.style.setProperty('--el-color-primary', val)
+            for (let i = 1; i <= 9; i++) {
+                document.documentElement.style.setProperty(`--el-color-primary-light-${i}`, colorTool.lighten(val, i / 10))
+            }
+            document.documentElement.style.setProperty(`--el-color-primary-darken-1`, colorTool.darken(val, 0.1))
+            this.$TOOL.data.set("APP_COLOR", val)
+        }
+    }
+}
 </script>
 
 <style>

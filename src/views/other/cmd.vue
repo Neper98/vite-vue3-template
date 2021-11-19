@@ -23,49 +23,47 @@
 			<el-tab-pane label="api">
 				<pre class="code">{{json.api}}</pre>
 			</el-tab-pane>
-		 </el-tabs>
-
-
+		</el-tabs>
 	</el-main>
 </template>
 
 <script>
-	export default {
-		name: 'blank',
-		data() {
-			return {
-				title: "CMD",
-				json: {
-					user: null,
-					token: null,
-					grid: null,
-					config: null,
-					api: null,
-				}
-			}
-		},
-		created() {
-			this.json.user = this.$TOOL.data.get("USER_INFO");
-			this.json.token = this.$TOOL.data.get("TOKEN");
-			this.json.grid = this.$TOOL.data.get("grid")||'null';
-			this.json.config = this.$CONFIG;
-			this.json.api = this.$API;
-		},
-		methods: {
-			clear_all(){
-				this.$TOOL.data.clear()
-				this.$message.success("清除所有成功")
-			},
-			clear_user(){
-				this.$TOOL.data.remove("user")
-				this.$message.success("清除登录状态成功")
-			},
-			clear_grid(){
-				this.$TOOL.data.remove("grid")
-				this.$message.success("清除grid成功")
-			}
-		}
-	}
+export default {
+    name: 'Blank',
+    data() {
+        return {
+            title: "CMD",
+            json: {
+                user: null,
+                token: null,
+                grid: null,
+                config: null,
+                api: null
+            }
+        }
+    },
+    created() {
+        this.json.user = this.$TOOL.data.get("USER_INFO")
+        this.json.token = this.$TOOL.data.get("TOKEN")
+        this.json.grid = this.$TOOL.data.get("grid") || 'null'
+        this.json.config = this.$CONFIG
+        this.json.api = this.$API
+    },
+    methods: {
+        clear_all() {
+            this.$TOOL.data.clear()
+            this.$message.success("清除所有成功")
+        },
+        clear_user() {
+            this.$TOOL.data.remove("user")
+            this.$message.success("清除登录状态成功")
+        },
+        clear_grid() {
+            this.$TOOL.data.remove("grid")
+            this.$message.success("清除grid成功")
+        }
+    }
+}
 </script>
 
 <style scoped>

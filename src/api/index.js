@@ -5,17 +5,8 @@
 const files = import.meta.globEager('./model/*.js')
 const modules = {}
 Object.keys(files).forEach((key) => {
-	modules[key.replace(/(\.\/|\.js)/g, '').split('/')[1]] = files[key].default
+    modules[key.replace(/(\.\/|\.js)/g, '').split('/')[1]] = files[key].default
 })
 
 export default modules
-// modules 形如 
-// {
-// 	auth: {
-// 		token: {}
-// 	},
-// 	common: {
-// 		upload: {}
-// 	}
-// }
 

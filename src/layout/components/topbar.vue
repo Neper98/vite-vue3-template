@@ -20,27 +20,27 @@
 </template>
 
 <script>
-	export default {
-		data() {
-			return {
-				breadList: []
-			}
-		},
-		created() {
-			this.getBreadcrumb();
-		},
-		watch: {
-			$route() {
-				this.getBreadcrumb();
-			}
-		},
-		methods: {
-			getBreadcrumb(){
-				let matched = this.$route.matched;
-				this.breadList = matched;
-			}
-		}
-	}
+export default {
+    data() {
+        return {
+            breadList: []
+        }
+    },
+    created() {
+        this.getBreadcrumb()
+    },
+    watch: {
+        $route() {
+            this.getBreadcrumb()
+        }
+    },
+    methods: {
+        getBreadcrumb() {
+            let matched = this.$route.matched
+            this.breadList = matched
+        }
+    }
+}
 </script>
 
 <style scoped>
