@@ -35,7 +35,7 @@ const DEV_CONFIG = {
     LAYOUT_TAGS: true,
 
     // 主题颜色
-    COLOR: ''
+    COLOR: '',
 
 	// 角色定义
 	ROLE_LIST:[
